@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Model\Article;
 use App\Http\Model\Goods;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,39 +22,21 @@ class AjaxController
      * 修改商品的状态
      * name : 0--is_on_sale  1--is_best  2--is_new   3--is_hot  6--state    7--promote_or_activity
      * (商品分类)4--sort_order  5--show_in_nav
-     *
-     * type : 0--Goods  1--Goods_type
+     * type : 0--Goods  1--Goods_type   2--Article  3--Article_type
      * @return bool
      **/
     public function get_up_state(Request $request)
     {
         switch ($request->get('name')) {
-            case 0:
-                $name = 'is_on_sale';
-                break;
-            case 1:
-                $name = 'is_best';
-                break;
-            case 2:
-                $name = 'is_new';
-                break;
-            case 3:
-                $name = 'is_hot';
-                break;
-            case 4:
-                $name = 'sort_order';
-                break;
-            case 5:
-                $name = 'show_in_nav';
-                break;
-            case 6:
-                $name = 'state';
-                break;
-            case 7:
-                $name='promote_or_activity';
-                break;
-            default:
-                $name = 'is_on_sale';
+            case 0: $name = 'is_on_sale';break;
+            case 1: $name = 'is_best';break;
+            case 2: $name = 'is_new';break;
+            case 3: $name = 'is_hot';break;
+            case 4: $name = 'sort_order';break;
+            case 5: $name = 'show_in_nav';break;
+            case 6: $name = 'state';break;
+            case 7: $name = 'promote_or_activity';break;
+            default:$name = 'is_on_sale';
         }
         $id = $request->get('uuid');
         if ($request->get('value') == 1) {
@@ -61,6 +44,7 @@ class AjaxController
         } else {
             $value = 1;
         }
+
         if ($request->type == 0) {
             if($name == 'state'){
                 $ls_arr=['state'=>$value,'promote_or_activity'=>0,'is_on_sale'=>0,'is_best'=>0,'is_new'=>0,'is_hot'=>0];
@@ -71,7 +55,8 @@ class AjaxController
             }else{
                 $state = Goods::where('id', $id)->update([$name => $value]);
             }
-        } else {
+        }
+        else if($request->type == 1) {
             if ($name == 'state') {
                 /**
                  * 1.该分类 state 0
@@ -90,7 +75,18 @@ class AjaxController
                 $state = DB::table('keyth_goods_type')->where('id', $id)->update([$name => $value]);
             }
         }
-        return $state;
+        else if($request->type == 2){
+            $state=Article::where('id', $id)->update([$name => $value]);
+        }
+        else if($request->type == 3){
+            $state=DB::table('keyth_article_type')->where('id', $id)->update([$name => $value]);
+            $article=Article::where('article_type_id',$id)->get();
+            foreach ($article as $item){
+                $item->state=0;
+                $item->save();
+            }
+        }
+            return $state;
     }
 
     public function upload_file(Request $request)
@@ -129,6 +125,21 @@ class AjaxController
             return $datas;
         }
         return [0, 0];
+    }
+    public function add_article_type(Request $request){
+        $datas['type_title']=$request->type_title;
+        $datas['bried']=$request->bried;
+        if(!empty($request->id)){
+            $state=DB::table('keyth_article_type')->where('id',$request->id)->update($datas);
+        }else{
+            $state=DB::table('keyth_article_type')->insert($datas);
+        }
+
+
+        if($state){
+            return 1;
+        }
+        return 0;
     }
 
 

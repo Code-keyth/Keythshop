@@ -33,7 +33,7 @@ class LoginController extends Controller
             $admin[0]->cookie_state=$cookie_state;
             Cookie::queue('Admin_Logstate',$cookie_state,200);
             $admin[0]->save();
-            return $this->alertjs('登录成功!','/admin');
+            return $this->alertjs('登录成功!','/admin/');
         }
         return $this->alertjs('登录失败!','/admin/login');
 

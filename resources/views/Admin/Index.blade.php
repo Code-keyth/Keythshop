@@ -60,41 +60,41 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/admin/goods">
+                        <a _href="goods">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品列表</cite>
 
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/goods_add">
+                        <a _href="goods_add">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品添加</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/goods_type">
+                        <a _href="goods_type">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品分类</cite>
 
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/goods_evaluate">
+                        <a _href="goods_evaluate">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>用户评价</cite>
 
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/goods_activity">
+                        <a _href="goods_activity">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>活动管理</cite>
 
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/goods_recycle">
+                        <a _href="goods_recycle">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>回收站</cite>
 
@@ -111,19 +111,19 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/admin/order">
+                        <a _href="order">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/order_delivery">
+                        <a _href="order_delivery">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>发货列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/order_retreat">
+                        <a _href="order_retreat">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>退货列表</cite>
                         </a>
@@ -138,25 +138,25 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/admin/admin_user">
+                        <a _href="admin_user">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/admin_role">
+                        <a _href="admin_role">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员角色</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/admin_power">
+                        <a _href="admin_power">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>权限管理</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/admin_log">
+                        <a _href="admin_log">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员日志</cite>
                         </a>
@@ -172,25 +172,25 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/admin/member">
+                        <a _href="member">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="/admin/member_account">
+                        <a _href="member_account">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>账单明细</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/member_order">
+                        <a _href="member_order">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单明细</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/member_message">
+                        <a _href="member_message">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员留言</cite>
                         </a>
@@ -206,19 +206,19 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="unicode.html">
+                        <a _href="article">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>文章列表</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/article">
+                        <a _href="article_type">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>文章分类</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/article_recycle">
+                        <a _href="article_recycle">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>文章回收站</cite>
                         </a>
@@ -234,25 +234,25 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/admin/setup_shop">
+                        <a _href="setup_shop">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商店设置</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/setup_pay">
+                        <a _href="setup_pay">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>支付设置</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/setup_logistic">
+                        <a _href="setup_logistic">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>配送设置</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/setup_parent">
+                        <a _href="setup_parent">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>推荐人设置</cite>
                         </a>
@@ -267,19 +267,19 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/admin/statis_member">
+                        <a _href="statis_member">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员统计</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/statis_order">
+                        <a _href="statis_order">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单统计</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/admin/statis_goods">
+                        <a _href="statis_goods">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品统计</cite>
                         </a>

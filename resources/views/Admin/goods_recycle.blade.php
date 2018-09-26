@@ -129,7 +129,6 @@
         });
       }
       function up_state(id,typeid) {
-
           $.get('/ajax/get_up_state',{'name':6,'value':0,'uuid':id,'type':0,'typeid':typeid},function (ret) {
               if(ret>0){
                   return 1;
