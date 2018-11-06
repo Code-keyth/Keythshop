@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/public/Admin/css/font.css">
 	<link rel="stylesheet" href="/public/Admin/css/xadmin.css">
+    <script type="text/javascript" src="/public/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript" src="/public/Admin/js/xadmin.js"></script>
@@ -19,7 +20,7 @@
 <body class="login-bg">
 
     <div class="login">
-        <div class="message">文章CMS-后台登录</div>
+        <div class="message">Keyth_shop-后台登录</div>
         <div id="darkbannerwrap"></div>
         
         <form action="" method="post" class="layui-form" >
@@ -36,10 +37,15 @@
     </div>
     @if (session('status'))
 <script>
+        @if(session('overtime'))
+        parent.location.reload();
+            @endif
+
     layui.use('layer', function(){
         var layer = layui.layer;
         layer.msg("{{ session('status') }}");
     });
+
 </script>
     @endif
 </body>

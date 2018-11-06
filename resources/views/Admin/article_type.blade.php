@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="/public/Admin/css/font.css">
     <link rel="stylesheet" href="/public/Admin/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/public/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/public/Admin/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -35,27 +35,7 @@
 </div>
 
 <div class="x-body">
-    <div class="layui-row">
-        <form class="layui-form">
 
-
-            <div class="layui-inline">
-                <div class="layui-input-inline" style="width: 150px;">
-                    <input type="text" class="layui-input" placeholder="栏目名称(必填)" lay-verify="required"
-                           value="{{$type['name1']}}" name="type_title" lay-filter="type_title">
-                </div>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <input value="{{$type['name2']}}" class="layui-input" lay-filter="bried" name="bried"
-                           placeholder="描述">
-                </div>
-            </div>
-            <input name="id" value="{{$type['name3']}}" hidden="hidden">
-            {{csrf_field()}}
-            <button class="layui-btn" lay-filter="add" lay-submit="">
-                保存
-            </button>
-        </form>
-    </div>
     <xblock>
 
         <button class="layui-btn" onclick="x_admin_show('添加分类','/admin/article_type_add',400,500)"

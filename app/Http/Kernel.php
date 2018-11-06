@@ -44,6 +44,9 @@ class Kernel extends HttpKernel
         'AdminLogin'=>[
             \App\Http\Middleware\AdminLogin::class,
         ],
+        'IndexLogin'=>[
+            \App\Http\Middleware\IndexLogin::class,
+        ],
     ];
 
     /**

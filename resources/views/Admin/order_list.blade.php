@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/public/Admin/css/font.css">
     <link rel="stylesheet" href="/public/Admin/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/public/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/public/Admin/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -67,9 +67,9 @@
         </form>
       </div>
       <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加商品','/admin/goods_add')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：{{$goodss->total()}}条</span>
+        <button class="layui-btn layui-btn-danger" ><i class="layui-icon"></i>122</button>
+
+        <span class="x-right" style="line-height:40px">共有数据：{{$orders->total()}}条</span>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -77,58 +77,68 @@
             <th>
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
-            <th>商品号</th>
-            <th>商品名</th>
-            <th>库存</th>
-            <th>售价/市场价</th>
-
-
-            <th>上下架</th>
-            <th>精品</th>
-            <th>新品</th>
-            <th>热销</th>
-            <th>排序</th>
+            <th>订单号</th>
+            <th>用户备注</th>
+            <th>配送方式</th>
+            <th>支付方式</th>
+            <th>订单总金额</th>
+            <th>下单时间</th>
+            <th>订单状态</th>
+            <th>配送状态</th>
             <th >操作</th>
             </tr>
         </thead>
         <tbody>
 
-        @foreach($goodss as $item)
+        @foreach($orders as $item)
           <tr>
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>{{$item->goods_sn}}</td>
-            <td>{{$item->goods_name}}</td>
-            <td>{{$item->goods_number}}件</td>
-            <td>{{$item->price}}/{{$item->market_price}}￥</td>
+            <td>{{$item->order_sn}}</td>
+
+            <td>{{$item->postscript}}</td>
+            <td>{{$Order->getLogistic($item->logistic_id)}}</td>
+            <td>{{$Order->getPay($item->pay_id)}}</td>
+            <td>{{$item->order_amount}}</td>
+            <td>{{date('Y-m-d H:i:s',$item->add_time)}}</td>
             <td>
-              <span  onclick="up_state(this,0,{{$item->is_on_sale}})" id="{{$item->id}}" class="layui-badge @if($item->is_on_sale==0)layui-bg-gray @endif">在售</span>
+                @switch($item->order_status)
+                  @case (0)<span class="layui-badge">待确认</span>@break
+                  @case (1)<span class="layui-badge layui-bg-green">已确认|@if(empty($item->pay_log_sn))待支付@else已支付@endif
+                </span>@break
+                  @case (2)<span class="layui-badge layui-bg-orange">取消</span>@break
+                  @case (3)<span class="layui-badge">无效</span>@break
+                  @case (4)<span class="layui-badge layui-bg-orange">退货</span>@break
+                  @default 未知状态
+                @endswitch
             </td>
             <td>
-              <span  onclick="up_state(this,1,{{$item->is_best}})"  id="{{$item->id}}"  class="layui-badge @if($item->is_best==0)layui-bg-gray @endif">精</span>
+              @if($item->order_status < 2)
+                @if(empty($item->pay_log_sn))
+                  <span class="layui-badge">待支付</span>
+                @else
+                  @switch($item->logistic_status)
+                    @case (0)<span class="layui-badge">待发货</span>
+                    <a title="发货" onclick="order_goto(this,'{{$item->order_sn}}')" href="javascript:;"><i class="layui-icon">&#xe609;</i></a>
+                    @break
+                    @case (1)<span class="layui-badge layui-bg-green">已发货</span>@break
+                    @case (2)<span class="layui-badge layui-bg-green">代收货</span>@break
+                    @default 未知状态
+                  @endswitch
+                @endif
+              @endif
             </td>
-            <td>
-                <span  onclick="up_state(this,2,{{$item->is_new}})"   id="{{$item->id}}" class="layui-badge @if($item->is_new==0)layui-bg-gray @endif">新</span>
-            </td>
-            <td>
-                <span  onclick="up_state(this,3,{{$item->is_hot}})" id="{{$item->id}}" class="layui-badge @if($item->is_hot==0)layui-bg-gray @endif">热</span>
-            </td>
-            <td>{{$item->sort_order}}</td>
             <td class="td-manage">
-              <a title="查看"  onclick="x_admin_show('编辑商品','/admin/goods_add?id={{$item->id}}')" href="javascript:;">
-                <i class="layui-icon">&#xe63c;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'{{$item->id}}')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
+              <a title="订单详情"  onclick="x_admin_show('查看订单','order_info?id={{$item->order_sn}}',700)" href="javascript:;"><i class="layui-icon">&#xe63c;</i></a>
+              <a title="删除" onclick="member_del(this,'{{$item->id}}')" href="javascript:;"><i class="layui-icon">&#xe640;</i></a>
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
       <div class="page">
-    {{$goodss->links()}}
+        {{$orders->links()}}
       </div>
 
     </div>
@@ -162,7 +172,25 @@
 
           });
       }
-      
+      function order_goto(obj,order_sn){
+          layer.confirm('确认要发货吗？',function(index){
+              //发异步删除数据
+              $.get('/ajax/order_goto',{'order_sn':order_sn},function (ret) {
+                  if(ret=='1'){
+                      $(obj).parents("tr").remove();
+                      layer.msg('发货成功!',{icon:1,time:1000});
+                      return 0;
+                  }
+                  else if(ret=='-1'){
+                      layer.msg('订单状态不能发货!',{icon:0,time:1000});
+                      return 0;
+                  }
+                  layer.msg('失败!',{icon:0,time:1000});
+              });
+
+          });
+      }
+
       function delAll (argument) {
         var data = tableCheck.getData();
         layer.confirm('确认要删除吗？'+data,function(index){
@@ -171,6 +199,7 @@
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
       }
+
       function up_state(obj,name,value) {
 
           $.get('/ajax/get_up_state',{'name':name,'value':value,'uuid':$(obj).attr('id'),'type':0},function (ret) {

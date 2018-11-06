@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/public/Admin/css/font.css">
     <link rel="stylesheet" href="/public/Admin/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/public/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/public/Admin/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -21,7 +21,7 @@
   </head>
   <body>
     <div class="x-body">
-        <form class="layui-form">
+        <form method="post" action="goods_type_add_c" class="layui-form">
 
 
           <div class="layui-form-item">
@@ -29,23 +29,34 @@
                   <span class="x-red">*</span>分类名
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="type_name" name="type_name" value="{{$type['type_name']}}" required="" lay-verify="required"
-                  autocomplete="off" class="layui-input">
+                  <input type="text" id="type_name" name="type_name" value="{{$type['type_name']}}" required="" lay-verify="required" autocomplete="off" class="layui-input">
               </div>
           </div>
           <div class="layui-form-item">
               <label  class="layui-form-label">
-                  <span class="x-red">*</span>上级栏目
+                  上级栏目
               </label>
               <div class="layui-input-inline">
                   <select name="parent_id">
-                      <option value="0" @if($type['id']==0) selected @endif>顶级分类</option>
-                      @foreach($goods_types as $item)
-                        <option value="{{$item->id}}" @if($item->id==$type['parent_id']) selected @endif>{{$item->type_name}}</option>
+                      <option value=""> 请选择分类</option>
+                    @foreach($goods_types as $item)
+                        <option @if($item->id==$type['parent_id']) selected @endif value="{{$item->id}}">{{$item->type_name}}</option>
                         @endforeach
                   </select>
               </div>
           </div>
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>关联属性
+                </label>
+                <div class="layui-input-inline">
+                    @foreach($goods_specs as $item)
+                        <input type="checkbox" @if(in_array($item->id,$goods_spec)) checked @endif name="spec[{{$item->id}}]" value="{{$item->spec_name}}|{{$item->code}}" title="{{$item->spec_name}}">
+                    @endforeach
+                </div>
+            </div>
+
+
             <div class="layui-form-item">
                 <label  class="layui-form-label">
                     <span class="x-red">*</span>分类描述
@@ -62,17 +73,14 @@
                   <span class="x-red">*</span>排序
               </label>
               <div class="layui-input-inline">
-                  <input type="text"  value="{{$type['sort_order']}}"  name="sort_order" required=""
-                  autocomplete="off" class="layui-input">
+                  <input type="text"  value="{{$type['sort_order']}}"  name="sort_order" required="" autocomplete="off" class="layui-input">
               </div>
           </div>
 
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  增加
-              </button>
+              <button  class="layui-btn" type="submit" lay-submit="">增加</button>
           </div>
       </form>
     </div>
@@ -113,11 +121,15 @@
               });
             return false;
           });
-          
-          
+
+
         });
     </script>
 
   </body>
 
 </html>
+
+
+
+

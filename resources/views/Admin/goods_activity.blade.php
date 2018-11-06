@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="/public/Admin/css/font.css">
     <link rel="stylesheet" href="/public/Admin/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/public/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/public/Admin/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -99,7 +99,7 @@
                     @endif
                 </td>
                 <td class="td-manage">
-                    <a title="保存" onclick="post_up_activity(this)">
+                    <a title="保存" onclick="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js(this)">
                         <i class="icon iconfont">&#xe747;</i>
                     </a>
                     <a title="删除" onclick="member_del(this,'{{$item->id}}')" href="javascript:;">
@@ -155,10 +155,10 @@
         });
     }
 
-    function post_up_activity(obj) {
+    function https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js(obj) {
         var inputs = $(obj).parents("tr").find("input");
         var uuid = $(obj).parents('tr').find("div").first().attr('data-id');
-        $.post('/ajax/post_up_activity', {'uuid': uuid, 'activity_number': inputs[0].value, 'promote_price': inputs[1].value, 'activity_start_date': inputs[2].value, 'activity_end_date': inputs[3].value, '_token': '{{csrf_token()}}'
+        $.post('/ajax/https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', {'uuid': uuid, 'activity_number': inputs[0].value, 'promote_price': inputs[1].value, 'activity_start_date': inputs[2].value, 'activity_end_date': inputs[3].value, '_token': '{{csrf_token()}}'
         }, function (ret) {
             if (ret) {
                 layer.msg('保存成功!', {icon: 6, time: 1000});

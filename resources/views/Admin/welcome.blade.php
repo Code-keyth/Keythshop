@@ -13,7 +13,7 @@
     <body>
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">欢迎管理员：
-            <span class="x-red">test</span>！当前时间:2018-04-25 20:50:53</blockquote>
+            <span class="x-red">{{$username}}</span>！当前时间:{{date('Y-m-d H:i:s',time())}}</blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">
@@ -23,46 +23,49 @@
                             <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
                                 <div carousel-item="">
                                     <ul class="layui-row layui-col-space10 layui-this">
+
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
+                                                <h3>商品数</h3>
                                                 <p>
-                                                    <cite>66</cite></p>
+                                                    <cite>{{$goods_number}}</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="javascript:;" class="x-admin-backlog-body">
+                                                <h3>商品分类数</h3>
+                                                <p>
+                                                    <cite>{{$goods_type_number}}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>会员数</h3>
                                                 <p>
-                                                    <cite>12</cite></p>
+                                                    <cite>{{$member_number}}</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>回复数</h3>
+                                                <h3>订单数</h3>
                                                 <p>
-                                                    <cite>99</cite></p>
+                                                    <cite>{{$order_number}}</cite></p>
                                             </a>
                                         </li>
+
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>商品数</h3>
+                                                <h3>管理员数</h3>
                                                 <p>
-                                                    <cite>67</cite></p>
+                                                    <cite>{{$admin_number }}</cite></p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
-                                            <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
-                                                <p>
-                                                    <cite>67</cite></p>
-                                            </a>
-                                        </li>
+
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>文章数</h3>
                                                 <p>
-                                                    <cite>6766</cite></p>
+                                                    <cite>{{$article_number}}</cite></p>
                                             </a>
                                         </li>
                                     </ul>
@@ -74,84 +77,87 @@
             </div>
         </fieldset>
         <fieldset class="layui-elem-field">
-            <legend>系统通知</legend>
+            <legend>管理员信息</legend>
             <div class="layui-field-box">
                 <table class="layui-table" lay-skin="line">
                     <tbody>
                         <tr>
                             <td >
-                                <a class="x-a" href="/" target="_blank">新版x-admin 2.0上线了</a>
+                                <a class="x-a" href="/" target="_blank">管理员微信:ZQ631347947</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td >
-                                <a class="x-a" href="/" target="_blank">交流qq群:(519492808)</a>
-                            </td>
-                        </tr>
+                        <tr><td ><a class="x-a" href="/" target="_blank">管理员邮箱:zhangqi@codekeyth.cn</a></td></tr>
+                        <tr><td ><a class="x-a" href="/" target="_blank">管理员TEL:15136079974</a></td></tr>
                     </tbody>
                 </table>
             </div>
         </fieldset>
         <fieldset class="layui-elem-field">
             <legend>系统信息</legend>
-            <div class="layui-field-box">
-                <table class="layui-table">
-                    <tbody>
-                        <tr>
-                            <th>xxx版本</th>
-                            <td>1.0.180420</td></tr>
-                        <tr>
-                            <th>服务器地址</th>
-                            <td>x.xuebingsi.com</td></tr>
-                        <tr>
-                            <th>操作系统</th>
-                            <td>WINNT</td></tr>
-                        <tr>
-                            <th>运行环境</th>
-                            <td>Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9</td></tr>
-                        <tr>
-                            <th>PHP版本</th>
-                            <td>5.6.27</td></tr>
-                        <tr>
-                            <th>PHP运行方式</th>
-                            <td>cgi-fcgi</td></tr>
-                        <tr>
-                            <th>MYSQL版本</th>
-                            <td>5.5.53</td></tr>
-                        <tr>
-                            <th>ThinkPHP</th>
-                            <td>5.0.18</td></tr>
-                        <tr>
-                            <th>上传附件限制</th>
-                            <td>2M</td></tr>
-                        <tr>
-                            <th>执行时间限制</th>
-                            <td>30s</td></tr>
-                        <tr>
-                            <th>剩余空间</th>
-                            <td>86015.2M</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th colspan="2" scope="col">服务器信息</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>服务器域名</td>
+                    <td><?php echo $_SERVER['HTTP_HOST'];?></td>
+                </tr>
+                <tr>
+                    <td>服务器IP</td>
+                    <td><?php echo ($_SERVER['REMOTE_ADDR']);?></td>
+                </tr>
+                <tr>
+                    <td>服务器操作系统</td>
+                    <td><?PHP echo PHP_OS; ?></td>
+                </tr>
+                <tr>
+                    <td>服务器信息 </td>
+                    <td><?PHP echo $_SERVER ['SERVER_SOFTWARE']; ?></td>
+                </tr>
+
+
+                <tr>
+                    <td>语言种类 </td>
+                    <td>PHP</td>
+                </tr>
+                <tr>
+                    <td>PHP 版本 </td>
+                    <td><?PHP echo PHP_VERSION; ?></td>
+                </tr>
+
+                <tr>
+                    <td>ZEND版本 </td>
+                    <td><?php echo $systemInfo['zendversion'] = zend_version(); ?></td>
+                </tr>
+                <tr>
+                    <td>MYSQL是否持续连接 </td>
+                    <td><?php echo @get_cfg_var("mysql.allow_persistent")?"是 ":"否"; ?></td>
+                </tr>
+                <tr>
+                    <td>脚本运行占用最大内存 </td>
+                    <td><?php echo  $systemInfo['memorylimit'] = get_cfg_var("memory_limit") ? get_cfg_var("memory_limit") : '-'; ?></td>
+                </tr>
+
+
+                </tbody>
+            </table>
         </fieldset>
-        <fieldset class="layui-elem-field">
-            <legend>开发团队</legend>
-            <div class="layui-field-box">
-                <table class="layui-table">
-                    <tbody>
-                        <tr>
-                            <th>版权所有</th>
-                            <td>xxxxx(xxxx)
-                                <a href="http://www.xxx.com/" class='x-a' target="_blank">访问官网</a></td>
-                        </tr>
-                        <tr>
-                            <th>开发者</th>
-                            <td>马志斌(113664000@qq.com)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </fieldset>
-        <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由x-admin提供技术支持。</blockquote>
+
+        <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由Keyth提供技术支持。</blockquote>
     </div>
+
+    @if (session('status'))
+        <script src="/public/Admin/lib/layui/layui.js" charset="utf-8"></script>
+        <script>
+            layui.use('layer', function(){
+                var layer = layui.layer;
+                layer.msg("{{ session('status') }}",{icon: 13,time: 2000,shade : [0.5 , '#000' , true]});
+            });
+        </script>
+    @endif
     </body>
 </html>
